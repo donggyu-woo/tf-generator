@@ -10,7 +10,7 @@ A starter kit for managing resources across multiple AWS accounts with Terraform
 ```yaml
 accounts:
   - alias: example-security
-    id: "111111111111"
+    id: "333333333333"
     email: example+security@example.com
     env: security
     region: ap-northeast-2
@@ -26,7 +26,7 @@ groups:
   baseline:
     services:
       - cloudtrail/data
-      - firehose      
+      - firehose
 
   security:
     services:
