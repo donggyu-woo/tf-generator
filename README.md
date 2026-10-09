@@ -123,3 +123,23 @@ State for every account is stored in a single S3 bucket in the account you manag
 Each service of each account has its own state key, so `*` stands for the path between the bucket and the state file, which is `aws/<env>/<alias>/<region>/<service>` (for example `aws/prod/example-prod/ap-northeast-2/cloudtrail/data`).
 
 The permissions on the `.tflock` object are only needed when state locking is enabled with `use_lockfile = true`. See the [S3 backend documentation](https://developer.hashicorp.com/terraform/language/backend/s3) for details.
+
+### Adding an account
+To add an account by hand, append it to `config/accounts.yaml` and run `uv run generate.py`.
+
+With [Claude Code](https://claude.com/claude-code), the `add-account` skill in `.claude/skills/` does both. Run it from the repository root with the alias, account ID, email, env and one or more groups:
+
+```
+/add-account example-dev 444444444444 example+dev@example.com dev baseline
+```
+
+The region defaults to `ap-northeast-2`. Any value you leave out is asked for instead of guessed.
+
+The skill then works through these steps:
+
+1. Asks whether the values were already checked against AWS Organizations. If not, it gives you the `aws organizations describe-account` command to run yourself and waits for your confirmation. It never runs the command for you.
+2. Checks that the ID is 12 digits, that the alias and ID are not already in `config/accounts.yaml`, and that every group exists in `config/groups.yaml`.
+3. Appends the account to `config/accounts.yaml` and runs `uv run generate.py`.
+4. Summarizes the changed and generated files.
+
+It does not run `terraform plan` or `terraform apply`, and it does not commit or push.
