@@ -5,8 +5,7 @@ groups:
       - firehose
       # examples:
       # - iam/role
-      # - vpc
-      # - vpc/endlint
+      # - vpc/endpoint
 
   security:
     services:
