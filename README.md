@@ -25,8 +25,8 @@ accounts:
 groups:
   baseline:
     services:
-      - firehose
       - cloudtrail/data
+      - firehose      
 
   security:
     services:
