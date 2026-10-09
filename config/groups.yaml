@@ -1,8 +1,8 @@
 groups:
   baseline:
     services:
-      - firehose
       - cloudtrail/data
+      - firehose
       # examples:
       # - iam/role
       # - vpc
