@@ -1,0 +1,21 @@
+accounts:
+  - alias: example-beta
+    id: "111111111111"
+    email: example+beta@example.com
+    env: beta
+    region: ap-northeast-2
+    groups: [baseline]
+
+  - alias: example-prod
+    id: "222222222222"
+    email: example+prod@example.com
+    env: prod
+    region: ap-northeast-2
+    groups: [baseline]
+
+  - alias: example-security
+    id: "333333333333"
+    email: example+security@example.com
+    env: security
+    region: ap-northeast-2
+    groups: [baseline, security]

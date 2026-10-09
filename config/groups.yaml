@@ -1,0 +1,14 @@
+groups:
+  baseline:
+    services:
+      - firehose
+      - cloudtrail/data
+      # examples:
+      # - iam/role
+      # - vpc
+      # - vpc/endlint
+
+  security:
+    services:
+      - cloudtrail/management
+      - guardduty

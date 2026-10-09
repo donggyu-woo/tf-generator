@@ -1,0 +1,6 @@
+provider "aws" {
+  region = "{{ account.region }}"
+  assume_role {
+    role_arn = "arn:aws:iam::{{ account.id }}:role/SampleAccountProvisioningRole"
+  }
+}

@@ -1,0 +1,20 @@
+resource "aws_kinesis_firehose_delivery_stream" "{{ account.alias_safe }}" {
+  name        = "aws-waf-logs-{{ account.region }}"
+  destination = "extended_s3"
+
+  extended_s3_configuration {
+    role_arn            = "arn:aws:iam::{{ account.id }}:role/firehose_delivery_role"
+    bucket_arn          = "arn:aws:s3:::example-aws-waf-logs"
+    prefix              = "{{ account.id }}/{{ account.region }}/"
+    error_output_prefix = "errors/"
+
+    buffering_size     = 128
+    buffering_interval = 300
+
+    compression_format = "GZIP"
+
+    cloudwatch_logging_options {
+      enabled = false
+    }
+  }
+}

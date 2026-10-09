@@ -1,0 +1,9 @@
+terraform {
+  backend "s3" {
+    bucket       = "example-tf-state-bucket"
+    key          = "aws/{{ account.env }}/{{ account.alias }}/{{ account.region }}/{{ service }}/terraform.tfstate"
+    region       = "ap-northeast-2"
+    encrypt      = true
+    use_lockfile = true
+  }
+}
